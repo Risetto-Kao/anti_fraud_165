@@ -1,4 +1,5 @@
 import 'package:anti_fraud_165/domain/entities/fraud_website.dart';
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'fraud_website_converter.g.dart';
@@ -15,4 +16,9 @@ class FraudWebsiteConverter extends FraudWebsite {
   factory FraudWebsiteConverter.fromJson(Map<String, dynamic> json) =>
       _$FraudWebsiteConverterFromJson(json);
   Map<String, dynamic> toJson() => _$FraudWebsiteConverterToJson(this);
+
+  @override
+  String toString() {
+    return "$name: $url -> count: $cnt, date: ${startCountDate.toString()} - ${endCountDate.toString()} ";
+  }
 }

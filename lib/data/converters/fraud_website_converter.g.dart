@@ -7,14 +7,16 @@ part of 'fraud_website_converter.dart';
 // **************************************************************************
 
 FraudWebsiteConverter _$FraudWebsiteConverterFromJson(
-        Map<String, dynamic> json) =>
-    FraudWebsiteConverter(
-      name: json['name'] as String,
-      url: json['url'] as String,
-      cnt: json['cnt'] as int,
-      startCountDate: DateTime.parse(json['startCountDate'] as String),
-      endCountDate: DateTime.parse(json['endCountDate'] as String),
-    );
+    Map<String, dynamic> json) {
+  DateFormat dateFormat = DateFormat("yyyy/MM/dd");
+  return FraudWebsiteConverter(
+    name: json['WEBSITE_NM'] as String,
+    url: json['WEBURL'] as String,
+    cnt: int.parse(json['CNT']),
+    startCountDate: dateFormat.parse(json['STA_SDATE'] as String),
+    endCountDate: dateFormat.parse(json['STA_EDATE'] as String),
+  );
+}
 
 Map<String, dynamic> _$FraudWebsiteConverterToJson(
         FraudWebsiteConverter instance) =>

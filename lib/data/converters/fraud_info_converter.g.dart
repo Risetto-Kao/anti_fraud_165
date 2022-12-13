@@ -6,12 +6,14 @@ part of 'fraud_info_converter.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FraudInfoConverter _$FraudInfoConverterFromJson(Map<String, dynamic> json) =>
-    FraudInfoConverter(
-      title: json['title'] as String,
-      content: json['content'] as String,
-      postDate: DateTime.parse(json['postDate'] as String),
-    );
+FraudInfoConverter _$FraudInfoConverterFromJson(Map<String, dynamic> json) {
+  DateFormat dateFormat = DateFormat("yyyy/MM/dd HH:mm");
+  return FraudInfoConverter(
+    title: json['標題'] as String,
+    content: json['發佈內容'] as String,
+    postDate: dateFormat.parse(json['發佈時間'] as String),
+  );
+}
 
 Map<String, dynamic> _$FraudInfoConverterToJson(FraudInfoConverter instance) =>
     <String, dynamic>{
