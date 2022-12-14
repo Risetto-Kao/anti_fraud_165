@@ -8,6 +8,9 @@ abstract class FraudLineIDRepoInterface {
 class FraudLineIDRepo implements FraudLineIDRepoInterface {
   @override
   Future<List<FraudLineIDConverter>> getFraudLineIDs() {
+    // todo: check network status
+    // if network is available, get data from remote
+    // if not, get data from cache
     final FraudLineIDAPI165 api = FraudLineIDAPI165();
     return api.getFraudLineIDs();
   }
