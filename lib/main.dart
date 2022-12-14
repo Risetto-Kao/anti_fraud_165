@@ -1,15 +1,43 @@
-import 'package:anti_fraud_165/data/sources/remote/fraud_line_id_api.dart';
+import 'package:anti_fraud_165/data/converters/fraud_info_converter.dart';
+import 'package:anti_fraud_165/data/converters/fraud_line_id_converter.dart';
+import 'package:anti_fraud_165/data/converters/fraud_website_converter.dart';
+import 'package:anti_fraud_165/data/sources/local/fraud_line_id_local_source.dart';
+import 'package:anti_fraud_165/data/sources/local/fraud_website_local_source.dart';
+import 'package:anti_fraud_165/data/sources/local/fraund_info_local_source.dart';
+import 'package:anti_fraud_165/data/sources/remote/fraud_info_api.dart';
+import 'package:anti_fraud_165/data/sources/remote/fraud_line_id_api_165.dart';
+import 'package:anti_fraud_165/domain/entities/fraud_line_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_logs/flutter_logs.dart';
+
+import 'data/sources/remote/fraud_website_api_165.dart';
 
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Logging
+  await FlutterLogs.initLogs(
+      logLevelsEnabled: [
+        LogLevel.INFO,
+        LogLevel.WARNING,
+        LogLevel.ERROR,
+        LogLevel.SEVERE
+      ],
+      timeStampFormat: TimeStampFormat.TIME_FORMAT_READABLE,
+      directoryStructure: DirectoryStructure.FOR_DATE,
+      logTypesEnabled: ["device", "network", "errors"],
+      logFileExtension: LogFileExtension.LOG,
+      logsWriteDirectoryName: "logs",
+      logsExportDirectoryName: "logs/exported",
+      debugFileOperations: true,
+      isDebuggable: true);
+
+  // initialize .env
   await dotenv.load(fileName: ".env");
+
   runApp(const MyApp());
 }
-
-// void main() {
-//   runApp(const MyApp());
-// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -55,9 +83,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    var api = FraudLineIDAPI();
-    api.getFraudLineID();
+  void _incrementCounter() async {
+    List<FraudInfoConverter> list = [];
+    list.add(FraudInfoConverter(
+        content: 't1',
+        postDate: DateTime.now().add(const Duration(days: 1)),
+        title: 'tt1'));
+    list.add(FraudInfoConverter(
+        content: 't2',
+        postDate: DateTime.now().add(const Duration(days: 2)),
+        title: 'tt2'));
+    list.add(FraudInfoConverter(
+        content: 't3',
+        postDate: DateTime.now().add(const Duration(days: 3)),
+        title: 'tt3'));
+    await FraudInfoLocalSource().saveCache(2, list);
+    var t = await FraudInfoLocalSource().getCache();
+    for (var i in t) {
+      print(i.toString());
+    }
   }
 
   @override

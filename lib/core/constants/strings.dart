@@ -1,3 +1,3 @@
-// const FRAUD_LINE_ID_URL = "FRAUD_LINE_IDS_URL";
-// const FRAUD_WEBSITES_URL = "FRAUD_WEBSITES_URL";
-// const FRAUD_INFORMATION_URL = "FRAUD_INFORMATION_URL";
+const FRAUD_LINE_IDS = "fraud_line_ids";
+const FRAUD_WEBSITES = "fraud_websites";
+const FRAUD_INFORMATION = "fraud_infomation";

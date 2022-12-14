@@ -13,3 +13,7 @@
 ## 開發過程
 - [Kanban](https://volcano-equipment-e0e.notion.site/7d963c838f1946a3b1b235fafe845b48?v=04198f69aa1c410cb8c376de46fe85e4)
 - [Development Journal](https://volcano-equipment-e0e.notion.site/Development-Journal-aa5418ba93994006815769caaac1df79)
+
+## Development 
+- 如果使用 vscode 開發，可使用 [Better Comment](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) 這個 extension，附上我的 vscode settings (vscode_settings.json)
+
