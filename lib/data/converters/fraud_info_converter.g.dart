@@ -15,9 +15,12 @@ FraudInfoConverter _$FraudInfoConverterFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$FraudInfoConverterToJson(FraudInfoConverter instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'content': instance.content,
-      'postDate': instance.postDate.toIso8601String(),
-    };
+Map<String, dynamic> _$FraudInfoConverterToJson(FraudInfoConverter instance) {
+  DateFormat dateFormat = DateFormat("yyyy/MM/dd HH:mm");
+
+  return <String, dynamic>{
+    '標題': instance.title,
+    '發佈內容': instance.content,
+    '發佈時間': dateFormat.format(instance.postDate),
+  };
+}

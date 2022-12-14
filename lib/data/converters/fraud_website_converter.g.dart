@@ -19,11 +19,14 @@ FraudWebsiteConverter _$FraudWebsiteConverterFromJson(
 }
 
 Map<String, dynamic> _$FraudWebsiteConverterToJson(
-        FraudWebsiteConverter instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-      'url': instance.url,
-      'cnt': instance.cnt,
-      'startCountDate': instance.startCountDate.toIso8601String(),
-      'endCountDate': instance.endCountDate.toIso8601String(),
-    };
+    FraudWebsiteConverter instance) {
+  DateFormat dateFormat = DateFormat("yyyy/MM/dd");
+
+  return <String, dynamic>{
+    'WEBSITE_NM': instance.name,
+    'WEBURL': instance.url,
+    'CNT': instance.cnt.toString(),
+    'STA_SDATE': dateFormat.format(instance.startCountDate),
+    'STA_EDATE': dateFormat.format(instance.endCountDate),
+  };
+}

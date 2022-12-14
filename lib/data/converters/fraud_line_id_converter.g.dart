@@ -15,8 +15,11 @@ FraudLineIDConverter _$FraudLineIDConverterFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$FraudLineIDConverterToJson(
-        FraudLineIDConverter instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'reportDate': instance.reportDate.toIso8601String(),
-    };
+    FraudLineIDConverter instance) {
+  DateFormat dateFormat = DateFormat("yyyy/MM/dd");
+
+  return <String, dynamic>{
+    '帳號': instance.id,
+    '通報日期': dateFormat.format(instance.reportDate),
+  };
+}

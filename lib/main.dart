@@ -1,5 +1,12 @@
+import 'package:anti_fraud_165/data/converters/fraud_info_converter.dart';
+import 'package:anti_fraud_165/data/converters/fraud_line_id_converter.dart';
+import 'package:anti_fraud_165/data/converters/fraud_website_converter.dart';
+import 'package:anti_fraud_165/data/sources/local/fraud_line_id_local_source.dart';
+import 'package:anti_fraud_165/data/sources/local/fraud_website_local_source.dart';
+import 'package:anti_fraud_165/data/sources/local/fraund_info_local_source.dart';
 import 'package:anti_fraud_165/data/sources/remote/fraud_info_api.dart';
 import 'package:anti_fraud_165/data/sources/remote/fraud_line_id_api_165.dart';
+import 'package:anti_fraud_165/domain/entities/fraud_line_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_logs/flutter_logs.dart';
@@ -77,8 +84,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() async {
-    var api = FraudInfoAPI165();
-    var t = await api.getFraudWebsites();
+    List<FraudInfoConverter> list = [];
+    list.add(FraudInfoConverter(
+        content: 't1',
+        postDate: DateTime.now().add(const Duration(days: 1)),
+        title: 'tt1'));
+    list.add(FraudInfoConverter(
+        content: 't2',
+        postDate: DateTime.now().add(const Duration(days: 2)),
+        title: 'tt2'));
+    list.add(FraudInfoConverter(
+        content: 't3',
+        postDate: DateTime.now().add(const Duration(days: 3)),
+        title: 'tt3'));
+    await FraudInfoLocalSource().saveCache(2, list);
+    var t = await FraudInfoLocalSource().getCache();
     for (var i in t) {
       print(i.toString());
     }
