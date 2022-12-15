@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:anti_fraud_165/core/constants/strings.dart';
+import 'package:anti_fraud_165/core/constants/induction.dart';
 import 'package:anti_fraud_165/core/storage/local_storage.dart';
 import 'package:anti_fraud_165/data/converters/fraud_website_converter.dart';
 import 'package:anti_fraud_165/data/sources/local/fraud_local_source.dart';
