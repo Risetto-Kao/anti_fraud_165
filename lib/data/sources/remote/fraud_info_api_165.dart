@@ -7,7 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class FraudInfoAPI165 {
   Dio dio = Dio();
 
-  Future<List<FraudInfoConverter>> getFraudWebsites() async {
+  Future<List<FraudInfoConverter>> getFraudInfo() async {
     // check url is valid from .env
     final fraudInfoUrl = dotenv.env["FRAUD_INFORMATION_URL"];
     if (fraudInfoUrl == null) throw ConfigException();

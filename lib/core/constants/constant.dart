@@ -3,3 +3,5 @@ class StatusCode {
   static final clientFailure = <int>{400, 404};
   static final serverFailure = <int>{500, 501};
 }
+
+const cacheSize = 10;

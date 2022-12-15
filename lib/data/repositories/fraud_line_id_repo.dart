@@ -1,3 +1,4 @@
+import 'package:anti_fraud_165/core/constants/constant.dart';
 import 'package:anti_fraud_165/core/error/exceptions.dart';
 import 'package:anti_fraud_165/core/error/failures.dart';
 import 'package:anti_fraud_165/core/system/network_info.dart';
@@ -25,7 +26,9 @@ class FraudLineIDRepo implements FraudLineIDRepoInterface {
     // if not, get data from cache
     if (await networkInfo.isConnected) {
       try {
-        return Right(await api.getFraudLineIDs());
+        final res = await api.getFraudLineIDs();
+        await localSource.saveCache(cacheSize, res);
+        return Right(res);
       } on ServerException {
         // todo: add logs
         return Left(ServerFailure());

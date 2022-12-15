@@ -1,5 +1,18 @@
+import 'dart:math';
+
+import 'package:anti_fraud_165/core/config/config.dart';
+import 'package:anti_fraud_165/core/system/network_info.dart';
 import 'package:anti_fraud_165/data/converters/fraud_info_converter.dart';
+import 'package:anti_fraud_165/data/repositories/fraud_line_id_repo.dart';
+import 'package:anti_fraud_165/data/repositories/fraud_website_repo.dart';
+import 'package:anti_fraud_165/data/repositories/fraund_info_repo.dart';
+import 'package:anti_fraud_165/data/sources/local/fraud_line_id_local_source.dart';
+import 'package:anti_fraud_165/data/sources/local/fraud_website_local_source.dart';
 import 'package:anti_fraud_165/data/sources/local/fraund_info_local_source.dart';
+import 'package:anti_fraud_165/data/sources/remote/fraud_info_api_165.dart';
+import 'package:anti_fraud_165/data/sources/remote/fraud_line_id_api_165.dart';
+import 'package:anti_fraud_165/data/sources/remote/fraud_website_api_165.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_logs/flutter_logs.dart';
@@ -27,6 +40,8 @@ Future main() async {
   // initialize .env
   await dotenv.load(fileName: ".env");
 
+  // set dev mode
+  Config.instance.setMode(DevMode.SimulateNetworkDisconneted);
   runApp(const MyApp());
 }
 
@@ -75,24 +90,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() async {
-    List<FraudInfoConverter> list = [];
-    list.add(FraudInfoConverter(
-        content: 't1',
-        postDate: DateTime.now().add(const Duration(days: 1)),
-        title: 'tt1'));
-    list.add(FraudInfoConverter(
-        content: 't2',
-        postDate: DateTime.now().add(const Duration(days: 2)),
-        title: 'tt2'));
-    list.add(FraudInfoConverter(
-        content: 't3',
-        postDate: DateTime.now().add(const Duration(days: 3)),
-        title: 'tt3'));
-    await FraudInfoLocalSource().saveCache(2, list);
-    var t = await FraudInfoLocalSource().getCache();
-    for (var i in t) {
-      print(i.toString());
-    }
+    final repo = FraudWebsiteRepo(
+      api: FraudWebsiteAPI165(),
+      localSource: FraudWebsiteLocalSource(),
+      networkInfo: NetworkInfo(connectivity: Connectivity()),
+    );
+    final res = await repo.getFraudWebsites();
+    res.fold((l) => print('error'), (r) => r.forEach(print));
   }
 
   @override
