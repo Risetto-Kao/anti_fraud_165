@@ -1,14 +1,15 @@
 import 'dart:convert';
 
-import 'package:anti_fraud_165/core/constants/strings.dart';
+import 'package:anti_fraud_165/core/constants/induction.dart';
 import 'package:anti_fraud_165/core/error/exceptions.dart';
 import 'package:anti_fraud_165/core/storage/local_storage.dart';
 import 'package:anti_fraud_165/data/converters/fraud_info_converter.dart';
 import 'package:anti_fraud_165/data/sources/local/fraud_local_source.dart';
+import 'package:anti_fraud_165/domain/entities/fraud_info.dart';
 
 class FraudInfoLocalSource implements FraudLocalSource {
   @override
-  Future<List> getCache() async {
+  Future<List<FraudInfo>> getCache() async {
     final localStorage = LocalStorage(destination: FRAUD_INFORMATION);
     List decode = jsonDecode(await localStorage.readCache());
     List<FraudInfoConverter> cache = [];
@@ -30,7 +31,7 @@ class FraudInfoLocalSource implements FraudLocalSource {
   }
 
   @override
-  Future<List> getSearchHistory() async {
+  Future<List<FraudInfo>> getSearchHistory() async {
     // TODO: implement getSearchHistory
     throw UnimplementedError();
   }
