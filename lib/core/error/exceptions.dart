@@ -1,6 +1,6 @@
 class ServerException implements Exception {}
 
-class LocalException implements Exception {}
+class CacheExcetion implements Exception {}
 
 class ConfigException implements Exception {}
 
