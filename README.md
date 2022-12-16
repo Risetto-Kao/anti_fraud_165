@@ -30,7 +30,16 @@
   - SimulateNetworkDisconneted (若使用 iOS simulator 但不想關 mac 網路時可用)
 - Architecture (實際只有用到 CRUD 裡面的 R )
   - ![image](https://github.com/Risetto-Kao/anti_fraud_165/blob/main/architecture.png)
-  
+
+## Use case
+- 使用者可以檢視、搜尋被認定為詐騙的 Line ID 
+  - ![image](https://github.com/Risetto-Kao/anti_fraud_165/blob/main/preview_images/line_id.png)
+- 使用者可以檢視、搜尋被認定為詐騙的網站
+  - ![image](https://github.com/Risetto-Kao/anti_fraud_165/blob/main/preview_images/website.png)
+- 使用者可以檢視反詐騙資訊標題，點擊可以進階顯示內容（如下圖）
+  - ![image](https://github.com/Risetto-Kao/anti_fraud_165/blob/main/preview_images/info.png)
+- 內有連結可以讓使用者快速連到165官網的「[我要檢舉、我要通報](https://165.npa.gov.tw/#/report/statement)」頁面
+
 ## Resources
 - 首頁照片：[【法令宣導】反詐騙，謹記3C原則](https://life.ocu.edu.tw/p/406-1028-47822,r1015.php?Lang=zh-tw)
 - App Icon: [165 Auti-Fraud Hot Line](https://www.npa.gov.tw/en/app/artwebsite/view?module=artwebsite&id=8035&serno=ed2427e1-de0a-4f6f-8f68-8f83b604e89b)
