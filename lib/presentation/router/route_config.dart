@@ -28,7 +28,7 @@ class RouteConfig {
     ),
     GetPage(
       name: fraudLineID,
-      page: () => const AppScaffold(
+      page: () => AppScaffold(
         child: FraudLineIDPage(),
       ),
     ),

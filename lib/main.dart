@@ -30,7 +30,8 @@ Future main() async {
   await dotenv.load(fileName: ".env");
 
   // set dev mode
-  Config.instance.setMode(DevMode.SimulateNetworkDisconneted);
+  // Config.instance.setMode(DevMode.SimulateNetworkDisconneted);
+  Config.instance.setMode(DevMode.Release);
 
   runApp(const MyApp());
 }

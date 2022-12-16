@@ -1,8 +1,6 @@
-import 'package:anti_fraud_165/core/error/failures.dart';
 import 'package:anti_fraud_165/core/system/network_info.dart';
 import 'package:anti_fraud_165/data/repositories/fraud_line_id_repo.dart';
 import 'package:anti_fraud_165/data/sources/local/fraud_line_id_local_source.dart';
-import 'package:anti_fraud_165/data/sources/remote/fraud_info_api_165.dart';
 import 'package:anti_fraud_165/data/sources/remote/fraud_line_id_api_165.dart';
 import 'package:anti_fraud_165/domain/entities/fraud_line_id.dart';
 import 'package:anti_fraud_165/domain/usecases/get_fraud_line_id.dart';
@@ -22,6 +20,8 @@ class FraudLineIDController extends GetxController {
 
   @override
   void dispose() {
+    // todo: save cache (since user last time watched)
+
     super.dispose();
   }
 

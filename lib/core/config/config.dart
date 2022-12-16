@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Config {
   static final Config _instance = Config._();
   DevMode _mode = DevMode.Debug;
