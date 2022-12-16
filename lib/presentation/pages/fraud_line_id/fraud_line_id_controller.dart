@@ -9,8 +9,9 @@ import 'package:get/get.dart';
 
 class FraudLineIDController extends GetxController {
   var fraudLineIDs = <FraudLineID>[].obs;
-  var searchWords = "".obs;
+  var searchText = "".obs;
   var failureMessage = "".obs;
+  var existLineIDs = <FraudLineID>[];
 
   @override
   void onInit() {
@@ -20,8 +21,7 @@ class FraudLineIDController extends GetxController {
 
   @override
   void dispose() {
-    // todo: save cache (since user last time watched)
-
+    // todo: save cache (from user last time watched)
     super.dispose();
   }
 
@@ -33,8 +33,26 @@ class FraudLineIDController extends GetxController {
         networkInfo: NetworkInfo(connectivity: Connectivity()),
       ),
     ).call();
-    getFraudLineID.fold((l) => failureMessage.value = l.toString(),
-        (r) => fraudLineIDs.value = r);
+    getFraudLineID.fold((l) => failureMessage.value = l.toString(), (r) {
+      // check deep copy vs shallow copy
+      existLineIDs = r;
+      fraudLineIDs.value = r;
+    });
+  }
+
+  // ? need to be a use case...?
+  void setSearchText(String s) {
+    searchText.value = s;
+    _search();
+  }
+
+  // better -> not efficient
+  void _search() {
+    List<FraudLineID> newLineIDs = [];
+    for (var i in existLineIDs) {
+      if (i.id.contains(searchText.value)) newLineIDs.add(i);
+    }
+    fraudLineIDs.value = newLineIDs;
   }
 
   bool get isFailure => failureMessage.value != "";

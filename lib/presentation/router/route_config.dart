@@ -34,13 +34,13 @@ class RouteConfig {
     ),
     GetPage(
       name: fraudInfo,
-      page: () => const AppScaffold(
+      page: () => AppScaffold(
         child: FraudInfoPage(),
       ),
     ),
     GetPage(
       name: fraudWebsite,
-      page: () => const AppScaffold(
+      page: () => AppScaffold(
         child: FraudWebsitePage(),
       ),
     ),

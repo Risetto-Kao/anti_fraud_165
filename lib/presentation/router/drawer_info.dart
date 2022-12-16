@@ -17,5 +17,5 @@ final List<DrawerInfo> drawerInfo = <DrawerInfo>[
   DrawerInfo('查詢詐騙網站', Icons.web_sharp, RouteConfig.fraudWebsite),
   DrawerInfo('165 宣導詐騙資訊', Icons.message, RouteConfig.fraudInfo),
   DrawerInfo('報案/檢舉', Icons.report, RouteConfig.report),
-  DrawerInfo('關於我們', Icons.message, RouteConfig.aboutAs),
+  DrawerInfo('關於我們', Icons.info_outline, RouteConfig.aboutAs),
 ];

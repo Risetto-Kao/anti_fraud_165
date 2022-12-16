@@ -1,5 +1,6 @@
 import 'package:anti_fraud_165/presentation/router/drawer_info.dart';
 import 'package:anti_fraud_165/presentation/styles/app_colors.dart';
+import 'package:anti_fraud_165/presentation/styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,7 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.support,
       child: ListView(padding: EdgeInsets.zero, children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -38,10 +39,14 @@ class DrawerListTile extends StatelessWidget {
           decoration: const BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.white))),
           child: ListTile(
-            leading: Icon(info.iconData),
+            leading: Icon(
+              info.iconData,
+              size: 30,
+              color: AppColors.primary,
+            ),
             title: Text(
               info.title,
-              style: const TextStyle(color: Colors.white),
+              style: AppTextStyle.drawerTitle,
             ),
             onTap: () => Get.toNamed(info.routeName),
           ),

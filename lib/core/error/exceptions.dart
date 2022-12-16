@@ -1,3 +1,5 @@
+// todo: add message
+
 class ServerException implements Exception {}
 
 class CacheExcetion implements Exception {}

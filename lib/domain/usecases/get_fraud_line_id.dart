@@ -10,8 +10,14 @@ class GetFraudLineID implements UseCase<List<FraudLineID>> {
   GetFraudLineID({required this.repo});
 
   @override
-  Future<Either<Failure, List<FraudLineID>>> call() {
-    // todo: check if need to add async await
-    return repo.getFraudLineIDs();
+  Future<Either<Failure, List<FraudLineID>>> call() async {
+    final res = await repo.getFraudLineIDs();
+    res.fold((l) => null, (r) => r.sort((a, b) => a.id.compareTo(b.id)));
+    return res;
   }
+
+  // Future<Either<Failure, String>> search(String s) {
+  //   final res = await repo.getFraudLineIDs();
+  //   res.fold((l) => null, (r) => r.remove(value));
+  // }
 }

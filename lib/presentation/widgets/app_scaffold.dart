@@ -21,34 +21,24 @@ class _AppScaffoldState extends State<AppScaffold> {
     return Scaffold(
       drawer: const MainDrawer(),
       key: _scaffoldKey,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.07,
-                  alignment: Alignment.center,
-                  color: AppColors.primary,
-                  child: const Text(
-                    Induction.appName,
-                    style: TextStyle(fontSize: 30, color: Colors.white),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-                  icon: const Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                ),
-              ],
-            ),
-            Expanded(child: widget.child)
-          ],
+      appBar: AppBar(
+        foregroundColor: Colors.black,
+        backgroundColor: AppColors.support,
+        leading: IconButton(
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.white,
+            size: 30,
+          ),
         ),
+        title: const Text(
+          Induction.appName,
+          style: TextStyle(fontSize: 25, color: Colors.white),
+        ),
+      ),
+      body: Column(
+        children: [Expanded(child: widget.child)],
       ),
     );
   }
