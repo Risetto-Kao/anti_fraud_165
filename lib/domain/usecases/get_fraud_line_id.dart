@@ -4,10 +4,10 @@ import 'package:anti_fraud_165/domain/entities/fraud_line_id.dart';
 import 'package:anti_fraud_165/domain/usecases/use_case.dart';
 import 'package:dartz/dartz.dart';
 
-class GetFraudLineID implements UseCase<List<FraudLineID>> {
+class GetFraudLineIDUseCase implements UseCase<List<FraudLineID>> {
   final FraudLineIDRepo repo;
 
-  GetFraudLineID({required this.repo});
+  GetFraudLineIDUseCase({required this.repo});
 
   @override
   Future<Either<Failure, List<FraudLineID>>> call() async {

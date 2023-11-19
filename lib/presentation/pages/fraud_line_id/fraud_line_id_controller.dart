@@ -26,7 +26,7 @@ class FraudLineIDController extends GetxController {
   }
 
   void setFraudLineID() async {
-    final getFraudLineID = await GetFraudLineID(
+    final getFraudLineID = await GetFraudLineIDUseCase(
       repo: FraudLineIDRepo(
         api: FraudLineIDAPI165(),
         localSource: FraudLineIDLocalSource(),

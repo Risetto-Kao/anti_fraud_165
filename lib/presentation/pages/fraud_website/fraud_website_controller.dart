@@ -20,7 +20,7 @@ class FraudWebsiteController extends GetxController {
   }
 
   void setFraudWebsites() async {
-    final getFraudWebsite = await GetFraudWebsite(
+    final getFraudWebsite = await GetFraudWebsiteUseCase(
         repo: FraudWebsiteRepo(
       api: FraudWebsiteAPI165(),
       localSource: FraudWebsiteLocalSource(),

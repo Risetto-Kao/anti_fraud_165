@@ -18,7 +18,7 @@ class FraudInfoController extends GetxController {
   }
 
   void setFraudInfo() async {
-    final getFraudInfo = await GetFraudInfo(
+    final getFraudInfo = await GetFraudInfoUseCase(
       repo: FraudInfoRepo(
         api: FraudInfoAPI165(),
         localSource: FraudInfoLocalSource(),

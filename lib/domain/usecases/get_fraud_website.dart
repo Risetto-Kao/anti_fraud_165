@@ -4,10 +4,10 @@ import 'package:anti_fraud_165/domain/entities/fraud_website.dart';
 import 'package:anti_fraud_165/domain/usecases/use_case.dart';
 import 'package:dartz/dartz.dart';
 
-class GetFraudWebsite implements UseCase<List<FraudWebsite>> {
+class GetFraudWebsiteUseCase implements UseCase<List<FraudWebsite>> {
   final FraudWebsiteRepo repo;
 
-  GetFraudWebsite({required this.repo});
+  GetFraudWebsiteUseCase({required this.repo});
 
   @override
   Future<Either<Failure, List<FraudWebsite>>> call() async {
